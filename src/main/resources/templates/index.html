@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Приложение Погода</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #87CEEB; /* Голубой фон */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+    }
+
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #005f6b;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Узнайте погоду в вашем городе</h1>
+  <form id="weather-form" th:method="POST" th:object="${weather}">
+    <input type="text" placeholder="Введите название города" th:field="*{city}">
+    <div class="error-message" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">City Error</div>
+    <button type="submit">Узнать погоду</button>
+  </form>
+  </form>
+</div>
+</body>
+</html>
