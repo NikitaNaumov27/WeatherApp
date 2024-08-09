@@ -47,7 +47,7 @@ public class WeatherController {
     public String getRestAPI(String cityName){
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.set("X-RapidAPI-Key", "5f9c70690dmsh581d9cea45af0efp1d0415jsn9f11c7f0208b");
+        headers.set("X-RapidAPI-Key", "your key");
         headers.set("X-RapidAPI-Host", "open-weather13.p.rapidapi.com");
         HttpEntity<String> entity = new HttpEntity<>(headers);
         String url = "https://open-weather13.p.rapidapi.com/city/" + cityName + "/%7Blang%7D";
