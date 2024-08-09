@@ -6,55 +6,75 @@
   <title>Приложение Погода</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #87CEEB; /* Голубой фон */
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff); /* Градиентный фон */
       margin: 0;
       padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      color: #333;
     }
 
     .container {
       text-align: center;
       background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
     }
 
     h1 {
-      margin-bottom: 20px;
-      color: #333;
+      margin-bottom: 25px;
+      font-size: 24px;
+      color: #444;
+    }
+
+    .error-message {
+      color: #e05e50;
+      font-weight: bold;
+      margin-bottom: 15px;
     }
 
     form {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     input[type="text"] {
-      width: 300px;
-      padding: 10px;
-      border: 2px solid #ccc;
-      border-radius: 4px;
-      margin-right: 10px;
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 15px;
       font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #66a6ff;
+      outline: none;
     }
 
     button {
-      padding: 10px 15px;
-      background-color: #008CBA;
+      width: 100%;
+      padding: 15px;
+      background-color: #66a6ff;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 5px;
       cursor: pointer;
       font-size: 16px;
+      transition: background-color 0.3s;
     }
 
     button:hover {
-      background-color: #005f6b;
+      background-color: #4a90e2;
     }
   </style>
 </head>
@@ -62,10 +82,10 @@
 <div class="container">
   <h1>Узнайте погоду в вашем городе</h1>
   <form id="weather-form" th:method="POST" th:object="${weather}">
-    <input type="text" placeholder="Введите название города" th:field="*{city}">
-    <div class="error-message" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">City Error</div>
+    <input type="text" placeholder="Введите название города" th:field="*{name}">
+    <!-- Отображение сообщения об ошибке, если оно есть -->
+    <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
     <button type="submit">Узнать погоду</button>
-  </form>
   </form>
 </div>
 </body>
